@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Chatbot Serverless Project
+Description: TwilioAIIntegration Serverless Project
 
 Resources:
   ApiGatewayAccountRole:
@@ -45,10 +45,11 @@ Resources:
   LambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/ChatbotServerless/
-      Handler: ChatbotServerless::ChatbotServerless.Function::FunctionHandler
+      CodeUri: src/TwilioAIIntegration/
+      Handler: TwilioAIIntegration::TwilioAIIntegration.Function::FunctionHandler
       Runtime: dotnet8
       Timeout: 30
+      MemorySize: 256
       Role: !GetAtt LambdaExecutionRole.Arn
       Environment:
         Variables:
