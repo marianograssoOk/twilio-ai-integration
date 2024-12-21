@@ -5,7 +5,7 @@ using Amazon.S3.Model;
 
 namespace TwilioAIIntegration;
 
-public class StorageService
+public class StorageService : IStorageService
 {
     private readonly IAmazonS3 _s3Client = new AmazonS3Client();
     public async Task SaveConversationToS3(TwilioMessage message, string response, ILambdaContext context)
@@ -24,4 +24,9 @@ public class StorageService
         });
         context.Logger.LogLine("Conversation saved to S3.");
     }
+}
+
+public interface IStorageService
+{
+    Task SaveConversationToS3(TwilioMessage message, string response, ILambdaContext context);
 }

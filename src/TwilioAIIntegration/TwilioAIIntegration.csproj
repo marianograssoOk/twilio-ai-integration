@@ -12,17 +12,19 @@
         <RootNamespace>TwilioAIIntegration</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Amazon.Lambda.Core" Version="2.2.0"/>
-        <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.4.0"/>
-        <PackageReference Include="Amazon.Lambda.APIGatewayEvents" Version="2.7.0"/>
+        <PackageReference Include="Amazon.Lambda.Core" Version="2.2.0" />
+        <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.4.0" />
+        <PackageReference Include="Amazon.Lambda.APIGatewayEvents" Version="2.7.0" />
         <PackageReference Include="AWSSDK.BedrockRuntime" Version="4.0.0-preview.4" />
         <PackageReference Include="AWSSDK.Kendra" Version="4.0.0-preview.4" />
         <PackageReference Include="AWSSDK.OpenSearchService" Version="4.0.0-preview.4" />
-        <PackageReference Include="AWSSDK.S3" Version="4.0.0-preview.4"/>
+        <PackageReference Include="AWSSDK.S3" Version="4.0.0-preview.4" />
         <PackageReference Include="AWSSDK.SimpleSystemsManagement" Version="4.0.0-preview.4" />
+        <PackageReference Include="Elastic.Clients.Elasticsearch" Version="8.16.3" />
         <PackageReference Include="HuggingFace" Version="0.4.0" />
         <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
         <PackageReference Include="OpenAI" Version="2.1.0" />
-        <PackageReference Include="Twilio" Version="7.7.0"/>
+        <PackageReference Include="Twilio" Version="7.7.0" />
     </ItemGroup>
 </Project>

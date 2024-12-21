@@ -5,7 +5,7 @@ using OpenAI.Chat;
 
 namespace TwilioAIIntegration;
 
-public class OpenAIService
+public class OpenAIService : IOpenAIService
 {
     public async Task<string> ProcessMessageAsync(TwilioMessage message, string contextText, ILambdaContext lambdaContext)
     {
@@ -36,4 +36,9 @@ public class OpenAIService
         var paramResponse = await ssmClient.GetParameterAsync(paramRequest);
         return paramResponse.Parameter.Value;
     }
+}
+
+public interface IOpenAIService
+{
+    Task<string> ProcessMessageAsync(TwilioMessage message, string contextText, ILambdaContext lambdaContext);
 }

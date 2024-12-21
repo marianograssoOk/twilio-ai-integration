@@ -5,7 +5,7 @@ using Twilio.Types;
 
 namespace TwilioAIIntegration;
 
-public class TwilioService
+public class TwilioService : ITwilioService
 {
     public async Task SendResponse(string from, string to, string message, ILambdaContext context)
     {
@@ -21,4 +21,9 @@ public class TwilioService
         await MessageResource.CreateAsync(messageOptions);
         context.Logger.LogLine("Message sent to Twilio successfully.");
     }
+}
+
+public interface ITwilioService
+{
+    Task SendResponse(string from, string to, string message, ILambdaContext context);
 }

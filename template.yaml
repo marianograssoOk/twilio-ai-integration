@@ -53,7 +53,6 @@ Resources:
       Environment:
         Variables:
           BUCKET_NAME: !Ref S3Bucket
-          KENDRA_INDEX_ID: !Ref KendraIndex
       Events:
         ApiEvent:
           Type: Api
@@ -84,10 +83,7 @@ Resources:
               - Effect: Allow
                 Action:
                   - "bedrock:*"
-                  - "kendra:Query"
-                  - "kendra:Retrieve"
                 Resource:
-                  - !GetAtt KendraIndex.Arn
                   - "*"
               - Effect: Allow
                 Action:
@@ -115,60 +111,6 @@ Resources:
         - AttributeName: UserId
           KeyType: HASH
       BillingMode: PAY_PER_REQUEST
-
-  KendraIndex:
-    Type: AWS::Kendra::Index
-    Properties:
-      Name: nutricion-index
-      Edition: ENTERPRISE_EDITION
-      Description: "Índice de documentos de nutrición y dietas para chatbot de asesoramiento nutricional"
-      RoleArn: !GetAtt KendraIndexRole.Arn
-
-  KendraIndexRole:
-    Type: AWS::IAM::Role
-    Properties:
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: Allow
-            Principal:
-              Service: kendra.amazonaws.com
-            Action: sts:AssumeRole
-      Policies:
-        - PolicyName: KendraIndexPolicy
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-              - Effect: Allow
-                Action:
-                  - s3:GetObject
-                  - s3:ListBucket
-                Resource:
-                  - !Sub "${S3Bucket.Arn}"
-                  - !Sub "${S3Bucket.Arn}/*"
-              - Effect: Allow
-                Action:
-                  - cloudwatch:PutMetricData
-                Resource: "*"
-                Condition:
-                  StringEquals:
-                    cloudwatch:namespace: AWS/Kendra
-
-  KendraS3DataSource:
-    Type: AWS::Kendra::DataSource
-    Properties:
-      IndexId: !Ref KendraIndex
-      Name: NutricionDocumentos
-      Type: S3
-      DataSourceConfiguration:
-        S3Configuration:
-          BucketName: !Ref S3Bucket
-          InclusionPrefixes:
-            - documentos/nutricion/
-      RoleArn: !GetAtt KendraIndexRole.Arn
-  # Removed DependsOn: KendraIndex
-
-
 
 Outputs:
   ApiGatewayUrl:
