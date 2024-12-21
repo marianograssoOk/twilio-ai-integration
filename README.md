@@ -1,4 +1,4 @@
-# sam-app-amazon-bedrock
+# twilio-ai-integration
 
 Este proyecto contiene código para una aplicación serverless que puedes desplegar con el SAM CLI. Incluye:
 
