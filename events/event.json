@@ -1,0 +1,19 @@
+{
+  "resource": "/message",
+  "path": "/message",
+  "httpMethod": "POST",
+  "headers": {
+    "Content-Type": "application/x-www-form-urlencoded"
+  },
+  "multiValueHeaders": {
+    "Content-Type": [
+      "application/x-www-form-urlencoded"
+    ]
+  },
+  "queryStringParameters": null,
+  "multiValueQueryStringParameters": null,
+  "pathParameters": null,
+  "stageVariables": null,
+  "body": "From=whatsapp%3A%2B5492215861193&To=whatsapp%3A%2B14155238886&Body=Hola.",
+  "isBase64Encoded": false
+}
