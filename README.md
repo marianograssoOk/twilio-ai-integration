@@ -1,5 +1,7 @@
 # twilio-ai-integration
 
+![Arquitectura del sistema](assets/Arquitectura.jpg)
+
 Este proyecto contiene código para una aplicación serverless que puedes desplegar con el SAM CLI. Incluye:
 
 - `src` - Código fuente de la función Lambda.
