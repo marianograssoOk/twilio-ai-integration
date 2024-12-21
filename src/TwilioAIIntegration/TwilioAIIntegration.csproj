@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -10,7 +10,8 @@
         <!-- Generate ready to run images during publishing to improve cold start time. -->
         <PublishReadyToRun>true</PublishReadyToRun>
         <RootNamespace>TwilioAIIntegration</RootNamespace>
-    </PropertyGroup>
+      <UserSecretsId>8499ae5f-31e7-4035-aeec-5ec22c8b9ae4</UserSecretsId>
+  </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Amazon.Lambda.Core" Version="2.2.0" />
         <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.4.0" />
@@ -23,6 +24,8 @@
         <PackageReference Include="Elastic.Clients.Elasticsearch" Version="8.16.3" />
         <PackageReference Include="HuggingFace" Version="0.4.0" />
         <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.0" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
         <PackageReference Include="OpenAI" Version="2.1.0" />
         <PackageReference Include="Twilio" Version="7.7.0" />

@@ -1,12 +1,13 @@
 ﻿using Amazon.Lambda.Core;
+using Microsoft.Extensions.Configuration;
 
 namespace TwilioAIIntegration
 {
-    public static class EnvironmentVariables
+    public class EnvironmentVariablesService(IConfiguration configuration) : IEnvironmentVariablesService
     {
-        public static string GetVariable(string key, ILambdaContext lambdaContext)
+        public string GetVariable(string key, ILambdaContext lambdaContext)
         {
-            var environmentVariable = Environment.GetEnvironmentVariable(key);
+            var environmentVariable = configuration[key];
             if (environmentVariable != null) return environmentVariable;
             
             lambdaContext.Logger.LogError($"Environment variable {key} was not found.");

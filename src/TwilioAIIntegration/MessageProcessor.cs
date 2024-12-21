@@ -25,20 +25,20 @@ namespace TwilioAIIntegration
             var parsedQuery = QueryHelpers.ParseQuery(request.Body);
             var message = new TwilioMessage
             {
-                From = parsedQuery.TryGetValue("From", out var fromValues)
+                From = PhoneNumberHelper.NormalizePhoneNumber(parsedQuery.TryGetValue("From", out var fromValues)
                     ? Uri.UnescapeDataString(fromValues.ToString())
-                    : "",
-                To = parsedQuery.TryGetValue("To", out var toValues)
+                    : ""),
+                To = PhoneNumberHelper.NormalizePhoneNumber(parsedQuery.TryGetValue("To", out var toValues)
                     ? Uri.UnescapeDataString(toValues.ToString())
-                    : "",
+                    : ""),
                 Body = parsedQuery.TryGetValue("Body", out var bodyValues)
                     ? Uri.UnescapeDataString(bodyValues.ToString())
                     : ""
             };
 
             // Buscar contexto relevante en Elasticsearch
-            var context = await _elasticSearchService.GetContextFromVectorDbAsync(message.Body, lambdaContext);
-            var genAIResponse = await _openAIService.ProcessMessageAsync(message, context, lambdaContext);
+            //var context = await _elasticSearchService.GetContextFromVectorDbAsync(message.Body, lambdaContext);
+            var genAIResponse = "prueba"; //await _openAIService.ProcessMessageAsync(message, context, lambdaContext);
             await _storageService.SaveConversationToS3(message, genAIResponse, lambdaContext);
             await _twilioService.SendResponse(message.From, message.To, genAIResponse, lambdaContext);
 
