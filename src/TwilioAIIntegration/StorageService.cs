@@ -44,8 +44,3 @@ public class StorageService(IEnvironmentVariablesService _environmentVariablesSe
         return string.IsNullOrEmpty(Environment.GetEnvironmentVariable("AWS_LAMBDA_FUNCTION_NAME"));
     }
 }
-
-public interface IStorageService
-{
-    Task SaveConversationToS3(TwilioMessage message, string response, ILambdaContext context);
-}

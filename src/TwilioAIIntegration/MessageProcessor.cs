@@ -36,10 +36,12 @@ namespace TwilioAIIntegration
                     : ""
             };
 
-            // Buscar contexto relevante en Elasticsearch
             var context = await _elasticSearchService.GetContextFromVectorDbAsync(message.Body, lambdaContext);
+
             var genAIResponse = await _openAIService.ProcessMessageAsync(message, context, lambdaContext);
+
             await _storageService.SaveConversationToS3(message, genAIResponse, lambdaContext);
+            
             await _twilioService.SendResponse(message.From, message.To, genAIResponse, lambdaContext);
 
             return genAIResponse;

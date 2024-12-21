@@ -34,14 +34,10 @@ public class ElasticSearchService : IElasticSearchService
         }
 
         // Obtener el campo más relevante (asumiendo que `body` contiene el texto)
-        var topResult = searchResponse.Hits.First().Source as IDictionary<string, object>;
-        return topResult != null && topResult.TryGetValue("body", out var context)
-            ? context.ToString()
-            : string.Empty;
+        if (searchResponse.Hits.First().Source is IDictionary<string, object> topResult && topResult.TryGetValue("body", out var context) && context != null)
+        {
+            return context?.ToString() ?? string.Empty;
+        }
+        return string.Empty;
     }
-}
-
-public interface IElasticSearchService
-{
-    Task<string> GetContextFromVectorDbAsync(string query, ILambdaContext lambdaContext);
 }
